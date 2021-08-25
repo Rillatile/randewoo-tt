@@ -1,21 +1,22 @@
 <div style="text-align: center;">
-  <form method="post" action="">
+  <form method="post" action="/">
     <label>Расписание запуска:</label>
-    <input type="text" placeholder="CRON expression" name="cron_expression">
+    <input type="text" placeholder="CRON expression" name="schedule" value="<%= @settings[:schedule] %>">
     <br>
     <br>
     <label>Время генерации сообщения (от):</label>
-    <input type="number" placeholder="В секундах" min="0" name="min_time">
+    <input type="number" placeholder="В секундах" min="0" name="min_time" value="<%= @settings[:min_time] %>">
     <br>
     <br>
     <label>Время генерации сообщения (до):</label>
-    <input type="number" placeholder="В секундах" min="0" name="max_time">
+    <input type="number" placeholder="В секундах" min="0" name="max_time" value="<%= @settings[:max_time] %>">
     <br>
     <br>
     <label>Количество генерируемых сообщений:</label>
-    <input type="number" min="0" name="quantity" value="0">
+    <input type="number" min="0" name="quantity" value="<%= @settings[:quantity] %>">
     <br>
     <br>
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
     <input type="submit" value="Применить">
   </form>
 </div>
