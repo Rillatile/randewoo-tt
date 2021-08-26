@@ -1,8 +1,6 @@
 class MainController < ApplicationController
   def index
-    if request.post?
-      Setting.update(params.slice(:schedule, :min_time, :max_time, :quantity))
-    end
+    Setting.update(params.slice(:schedule, :min_time, :max_time, :quantity)) if request.post?
 
     @settings = {
       schedule: Setting.get_value(:schedule),
@@ -10,5 +8,7 @@ class MainController < ApplicationController
       max_time: Setting.get_value(:max_time),
       quantity: Setting.get_value(:quantity) || 0
     }
+
+    GenerateMessageWorker.start(1, 1, 3)
   end
 end
