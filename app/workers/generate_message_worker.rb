@@ -10,7 +10,7 @@ class GenerateMessageWorker
 
     if message.save
       Rails.logger.info("#{message.created_at}, INFO, \"Message '#{message.uuid}' was created\"")
-      SendMessageWorker.perform_async(message.uuid, message.value)
+      SendMessageWorker.perform_async(message.id)
     else
       Rails.logger.error("#{Time.now}, ERROR, \"Message '#{message.uuid}' wasn't saved\"")
     end
