@@ -1,5 +1,3 @@
-require 'sidekiq-scheduler'
-
 class GenerateMessageWorker
   include Sidekiq::Worker
   sidekiq_options retry: false
@@ -18,7 +16,18 @@ class GenerateMessageWorker
     end
   end
 
-  def self.start(messages_quantity, min_time, max_time)
-    (1..messages_quantity).to_a.each { GenerateMessageWorker.perform_async(min_time, max_time) }
+  def self.start
+    # Получаем параметры генерации сообщений
+    params = generation_parameters
+
+    (1..params[:quantity]).to_a.each { GenerateMessageWorker.perform_async(params[:min_time], params[:max_time]) }
+  end
+
+  private_class_method def self.generation_parameters
+    {
+      quantity: Redis.current.get('quantity').to_i,
+      min_time: Redis.current.get('min_time').to_i,
+      max_time: Redis.current.get('max_time').to_i
+    }
   end
 end

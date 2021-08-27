@@ -11,7 +11,7 @@ class SendMessageWorker
 
     Rails.logger.info("#{Time.now}, INFO, \"Attempt to send a message '#{uuid}'\"")
 
-    response = Faraday.post(ENV['MESSAGE_RECEIVER_URL'], encoded_params)
+    response = Faraday.post('http://127.0.0.1:8000', encoded_params)
 
     Rails.logger.info("#{Time.now}, INFO, \"Message '#{uuid}' was sent\"")
 

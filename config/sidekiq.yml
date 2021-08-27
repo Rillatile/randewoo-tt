@@ -1,4 +1,0 @@
-:schedule:
-  generate_message:
-    cron: '*/1 * * * *'
-    class: GenerateMessageWorker
