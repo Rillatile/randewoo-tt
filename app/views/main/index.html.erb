@@ -20,4 +20,5 @@
     <%= tag(:br) %>
     <%= form.submit 'Применить' %>
   <% end %>
+  <%= content_tag(:p, @error, style: 'color: red;') %>
 <% end %>
