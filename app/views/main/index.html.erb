@@ -1,22 +1,23 @@
-<div style="text-align: center;">
-  <form method="post" action="/">
-    <label>Расписание запуска:</label>
-    <input type="text" placeholder="CRON expression" name="schedule" value="<%= @settings[:schedule] %>">
-    <br>
-    <br>
-    <label>Время генерации сообщения (от):</label>
-    <input type="number" placeholder="В секундах" min="0" name="min_time" value="<%= @settings[:min_time] %>">
-    <br>
-    <br>
-    <label>Время генерации сообщения (до):</label>
-    <input type="number" placeholder="В секундах" min="0" name="max_time" value="<%= @settings[:max_time] %>">
-    <br>
-    <br>
-    <label>Количество генерируемых сообщений:</label>
-    <input type="number" min="0" name="quantity" value="<%= @settings[:quantity] %>">
-    <br>
-    <br>
-    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-    <input type="submit" value="Применить">
-  </form>
-</div>
+<%= content_tag :div, style: 'text-align: center;' do %>
+  <%= form_with url: '/', method: :post do |form| %>
+    <%= tag(:br) %>
+    <%= tag(:br) %>
+    <%= form.label :schedule, 'Расписание запуска:' %>
+    <%= form.text_field :schedule, placeholder: 'CRON expression', value: @settings[:schedule] %>
+    <%= tag(:br) %>
+    <%= tag(:br) %>
+    <%= form.label :min_time, 'Время генерации сообщения (от):' %>
+    <%= form.number_field :min_time, placeholder: 'В секундах', value: @settings[:min_time], min: 0 %>
+    <%= tag(:br) %>
+    <%= tag(:br) %>
+    <%= form.label :max_time, 'Время генерации сообщения (до):' %>
+    <%= form.number_field :max_time, placeholder: 'В секундах', value: @settings[:max_time], min: 0 %>
+    <%= tag(:br) %>
+    <%= tag(:br) %>
+    <%= form.label :quantity, 'Количество генерируемых сообщений:' %>
+    <%= form.number_field :quantity, value: @settings[:quantity], min: 0 %>
+    <%= tag(:br) %>
+    <%= tag(:br) %>
+    <%= form.submit 'Применить' %>
+  <% end %>
+<% end %>
