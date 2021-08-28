@@ -41,4 +41,13 @@ module Settings
       messages_receiver_url: nil
     }
   end
+
+  def self.get_setting_value(name)
+    begin
+      value = Redis.current.get(name)
+    rescue
+      value = nil
+    end
+    value
+  end
 end
