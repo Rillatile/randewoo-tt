@@ -35,7 +35,7 @@ describe MainController, type: :controller do
       expect(assigns(:error)).not_to be_nil
       expect(response).to have_http_status(:bad_request)
     end
-
+    # Для этого теста нужно отключить Redis
     it '@error is not blank and returns a 500 when redis is not available' do
       post :index, params: {
         schedule: '*/5 * * * *',
