@@ -8,7 +8,7 @@ class SendMessageWorker
 
     Rails.logger.info("#{Time.now}, INFO, \"Attempt to send a message '#{message.uuid}'\"")
 
-    response = Faraday.post('http://127.0.0.1:8000', encoded_params)
+    response = Faraday.post(Redis.current.get('messages_receiver_url'), encoded_params)
 
     Rails.logger.info("#{Time.now}, INFO, \"Message '#{message.uuid}' was sent\"")
     message.update_attribute(:status, Message::STATUS[:sent])

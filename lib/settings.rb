@@ -9,7 +9,8 @@ module Settings
       schedule: Redis.current.get('schedule'),
       min_time: Redis.current.get('min_time'),
       max_time: Redis.current.get('max_time'),
-      quantity: Redis.current.get('quantity')
+      quantity: Redis.current.get('quantity'),
+      messages_receiver_url: Redis.current.get('messages_receiver_url')
     }
   end
 end

@@ -18,6 +18,10 @@
     <%= form.number_field :quantity, value: @settings[:quantity], min: 0 %>
     <%= tag(:br) %>
     <%= tag(:br) %>
+    <%= form.label :messages_receiver_url, 'Адрес приёмщика сообщений:' %>
+    <%= form.text_field :messages_receiver_url, placeholder: 'URL адрес', value: @settings[:messages_receiver_url] %>
+    <%= tag(:br) %>
+    <%= tag(:br) %>
     <%= form.submit 'Применить' %>
   <% end %>
   <%= content_tag(:p, @error, style: 'color: red;') %>
