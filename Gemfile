@@ -32,6 +32,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rails-controller-testing'
   gem 'rexml'
+  gem 'rspec-sidekiq'
 end
 
 group :development do
