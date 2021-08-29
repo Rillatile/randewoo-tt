@@ -1,0 +1,31 @@
+<%= content_tag :div, style: 'text-align: center;' do %>
+  <%= form_with url: '/', method: :post do |form| %>
+    <%= tag(:br) %>
+    <%= tag(:br) %>
+    <%= form.label :schedule, 'Расписание запуска:' %>
+    <%= form.text_field :schedule, placeholder: 'CRON expression', value: @settings[:schedule] %>
+    <%= tag(:br) %>
+    <%= tag(:br) %>
+    <%= form.label :min_time, 'Время генерации сообщения (от):' %>
+    <%= form.number_field :min_time, placeholder: 'В секундах', value: @settings[:min_time], min: 0 %>
+    <%= tag(:br) %>
+    <%= tag(:br) %>
+    <%= form.label :max_time, 'Время генерации сообщения (до):' %>
+    <%= form.number_field :max_time, placeholder: 'В секундах', value: @settings[:max_time], min: 0 %>
+    <%= tag(:br) %>
+    <%= tag(:br) %>
+    <%= form.label :quantity, 'Количество генерируемых сообщений:' %>
+    <%= form.number_field :quantity, value: @settings[:quantity], min: 0 %>
+    <%= tag(:br) %>
+    <%= tag(:br) %>
+    <%= form.label :messages_receiver_url, 'Адрес получателя сообщений:' %>
+    <%= form.text_field :messages_receiver_url, placeholder: 'URL адрес', value: @settings[:messages_receiver_url] %>
+    <%= tag(:br) %>
+    <%= tag(:br) %>
+    <%= form.submit 'Применить' %>
+  <% end %>
+  <%= content_tag(:p, @success, style: 'color: green;') %>
+  <%= content_tag(:p, @error, style: 'color: red;') %>
+  <%= text_area(:log, :notes, rows: 25, style: 'width: 100%; resize: none;', disabled: true) %>
+  <%= javascript_pack_tag 'get_logs'%>
+<% end %>

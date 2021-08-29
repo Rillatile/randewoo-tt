@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root to: 'main#index'
+  post '/', to: 'main#index'
+  get '/logs', to: 'main#logs'
 end
