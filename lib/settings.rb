@@ -3,13 +3,13 @@ module Settings
     begin
       params.keys.each { |key| Redis.current.set(key, params[key]) }
     rescue Redis::CannotConnectError
-      Rails.logger.error("#{Time.now}, ERROR, \"Connection to Redis could not be established\"")
+      Rails.logger.error("Application log: #{Time.now}, ERROR, \"Connection to Redis could not be established\"")
       return false
     rescue => error
-      Rails.logger.error("#{Time.now}, ERROR, \"#{error.message}\"")
+      Rails.logger.error("Application log: #{Time.now}, ERROR, \"#{error.message}\"")
       return false
     end
-    Rails.logger.info("#{Time.now}, INFO, \"The settings have been updated: #{params}\"")
+    Rails.logger.info("Application log: #{Time.now}, INFO, \"The settings have been updated: #{params}\"")
     true
   end
 
@@ -23,10 +23,10 @@ module Settings
         messages_receiver_url: Redis.current.get('messages_receiver_url')
       }
     rescue Redis::CannotConnectError
-      Rails.logger.error("#{Time.now}, ERROR, \"Connection to Redis could not be established\"")
+      Rails.logger.error("Application log: #{Time.now}, ERROR, \"Connection to Redis could not be established\"")
       raise Redis::CannotConnectError
     rescue => error
-      Rails.logger.error("#{Time.now}, ERROR, \"#{error.message}\"")
+      Rails.logger.error("Application log: #{Time.now}, ERROR, \"#{error.message}\"")
       raise error
     end
     current_settings
