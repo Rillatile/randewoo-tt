@@ -24,5 +24,8 @@
     <%= tag(:br) %>
     <%= form.submit 'Применить' %>
   <% end %>
+  <%= content_tag(:p, @success, style: 'color: green;') %>
   <%= content_tag(:p, @error, style: 'color: red;') %>
+  <%= text_area(:log, :notes, rows: 25, style: 'width: 100%; resize: none;', disabled: true) %>
+  <%= javascript_pack_tag 'get_logs'%>
 <% end %>
