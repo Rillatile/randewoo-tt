@@ -5,7 +5,8 @@ class Message < ApplicationRecord
     send: 'send',
     sent: 'sent',
     delivered: 'delivered',
-    sending_failed: 'sending_failed'
+    sending_failed: 'sending_failed',
+    not_delivered: 'not_delivered'
   }
 
   def generate

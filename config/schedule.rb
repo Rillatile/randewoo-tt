@@ -15,3 +15,7 @@ if schedule.present?
     runner 'GenerateMessageWorker.start'
   end
 end
+# Повторная отправка неотправившихся либо недоставленных сообщений
+every 1.hour do
+  runner 'SendMessageWorker.resend_failed_messages'
+end
